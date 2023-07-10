@@ -1,0 +1,82 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestions_Update]    Script Date: 7/10/2023 11:44:29 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestions_Update]
+         @Question nvarchar(500)
+		,@HelpText nvarchar(255)
+		,@IsRequired bit
+		,@IsMultipleAllowed bit
+		,@QuestionTypeId int
+		,@StatusId int
+		,@SortOrder int
+		,@Id int
+
+/*
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: A proc to update a test question
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+
+/* ---TEST CODE-----
+    Declare @Id int = 4
+
+	Declare  @Question nvarchar(500) = 'What is a Database?'
+		    ,@HelpText nvarchar(255) = 'Microsoft SQL Server'
+		    ,@IsRequired bit = 1
+		    ,@IsMultipleAllowed bit = 0
+		    ,@QuestionTypeId int = 2
+		    ,@StatusId int = 1
+		    ,@SortOrder int = 1
+
+		Select *
+		   from dbo.TestQuestions
+
+		  Execute dbo.TestQuestions_Update
+		      @Question
+			 ,@HelpText
+			 ,@IsRequired
+			 ,@IsMultipleAllowed
+			 ,@QuestionTypeId
+			 ,@StatusId
+			 ,@SortOrder
+			 ,@Id
+
+		 Select *
+		    from dbo.TestQuestions
+*/
+
+as
+
+BEGIN
+
+Declare @newDate datetime2(7) = getutcdate()
+
+UPDATE [dbo].[TestQuestions]
+   SET 
+       [Question] = @Question
+      ,[HelpText] = @HelpText
+      ,[IsRequired] = @IsRequired
+      ,[IsMultipleAllowed] = @IsMultipleAllowed
+      ,[QuestionTypeId] = @QuestionTypeId
+      ,[StatusId] = @StatusId
+      ,[SortOrder] = @SortOrder
+      ,[DateModified] = @newDate
+ WHERE Id = @Id
+
+
+END
+
+
