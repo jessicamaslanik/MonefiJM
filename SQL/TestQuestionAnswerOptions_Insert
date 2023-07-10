@@ -1,0 +1,87 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestionAnswerOptions_Insert]    Script Date: 7/10/2023 11:41:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestionAnswerOptions_Insert]
+        @QuestionId int
+	   ,@Text nvarchar(500)
+	   ,@Value nvarchar(100)
+	   ,@AdditionalInfo nvarchar(200)
+	   ,@CreatedBy int
+	   ,@IsCorrect bit
+	   ,@Id int OUTPUT
+
+
+
+/*
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: proc to add a Test Question Answer Option
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+/* ----TEST CODE -----
+      
+	   Select *
+	      from TestQuestionAnswerOptions
+
+       Declare @Id int = 0;
+
+	   Declare @QuestionId int = 19
+	          ,@Text nvarchar(500) = 'Percent of what the borrower pays in addtion to the orginal loan ammount'
+			  ,@Value nvarchar(100) = null
+			  ,@AdditionalInfo nvarchar(200) = 'answer'
+			  ,@CreatedBy int = 1
+			  ,@IsCorrect bit = 1
+
+		Execute dbo.TestQuestionAnswerOptions_Insert
+		       @QuestionId
+			  ,@Text
+			  ,@Value
+			  ,@AdditionalInfo
+			  ,@CreatedBy
+			  ,@IsCorrect
+			  ,@Id OUTPUT
+
+		Select *
+		     from dbo.TestQuestionAnswerOptions
+			   Where Id = @Id
+
+
+
+
+*/
+
+as
+
+BEGIN
+
+INSERT INTO [dbo].[TestQuestionAnswerOptions]
+           ([QuestionId]
+           ,[Text]
+           ,[Value]
+           ,[AdditionalInfo]
+           ,[CreatedBy]
+           ,[IsCorrect])
+     VALUES
+           (@QuestionId
+		   ,@Text
+		   ,@Value
+		   ,@AdditionalInfo
+		   ,@CreatedBy
+		   ,@IsCorrect)
+
+		    SET @Id = SCOPE_IDENTITY()
+END
+
+
