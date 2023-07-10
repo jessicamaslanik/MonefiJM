@@ -1,0 +1,78 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestionAnswerOptions_Update]    Script Date: 7/10/2023 11:42:03 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestionAnswerOptions_Update]
+        @QuestionId int
+	   ,@Text nvarchar(500)
+	   ,@Value nvarchar(100)
+	   ,@AdditionalInfo nvarchar(200)
+	   ,@CreatedBy int
+	   ,@IsCorrect bit
+	   ,@Id int
+
+/*
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: Proc to update a test question answer option
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+/* -----TEST CODE -----
+
+Declare @Id int = 1
+
+Declare @QuestionId int = 4
+	   ,@Text nvarchar(500) = 'An organized collection of structured information, or data, typically stored electronically in a computer system. '
+	   ,@Value nvarchar(100) = null
+	   ,@AdditionalInfo nvarchar(200) = 'answer'
+	   ,@CreatedBy int = 1
+	   ,@IsCorrect bit = 1
+	   
+ Select *
+       from dbo.TestQuestionAnswerOptions
+	     Where Id = @Id
+
+ Execute dbo.TestQuestionAnswerOptions_Update
+         @QuestionId
+		,@Text
+		,@Value
+		,@AdditionalInfo
+		,@CreatedBy
+		,@IsCorrect
+		,@Id
+
+Select *
+       from dbo.TestQuestionAnswerOptions
+	    Where Id = @Id
+
+*/
+
+as
+BEGIN
+
+Declare @newDate datetime2(7) = getutcdate()
+
+
+UPDATE [dbo].[TestQuestionAnswerOptions]
+   SET [QuestionId] = @QuestionId
+      ,[Text] = @Text
+      ,[Value] = @Value
+      ,[AdditionalInfo] = @AdditionalInfo
+      ,[CreatedBy] = @CreatedBy
+      ,[DateModified] = @newDate
+      ,[IsCorrect] = @IsCorrect
+ WHERE Id = @Id
+END
+
+
