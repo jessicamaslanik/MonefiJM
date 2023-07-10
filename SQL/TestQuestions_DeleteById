@@ -1,0 +1,59 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestions_DeleteById]    Script Date: 7/10/2023 11:43:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestions_DeleteById]
+        @Id int
+
+/*
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: Proc to delete a test question by id
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+
+/* ----TEST CODE -----
+    Declare @Id int = 4
+
+
+		Select *
+		   from dbo.TestQuestions
+
+		  Execute dbo.TestQuestions_DeleteById
+			 @Id
+			
+
+		 Select *
+		    from dbo.TestQuestions
+
+
+*/
+
+as
+
+BEGIN
+
+Declare @newDate datetime2(7) = getutcdate()
+Declare @StatusId int = 5
+
+UPDATE [dbo].[TestQuestions]
+   SET 
+      [StatusId] = @StatusId
+      ,[DateModified] = @newDate
+ WHERE Id = @Id
+
+
+END
+
+
