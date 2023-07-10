@@ -1,0 +1,100 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestions_Insert]    Script Date: 7/10/2023 11:43:55 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestions_Insert]
+         @UserId int
+        ,@Question nvarchar(500)
+		,@HelpText nvarchar(255)
+		,@IsRequired bit
+		,@IsMultipleAllowed bit
+		,@QuestionTypeId int
+		,@TestId int
+		,@StatusId int
+		,@SortOrder int
+		,@Id int OUTPUT
+
+
+/*
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: A proc to add a test question
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+/*
+
+       Select *
+	        from dbo.TestQuestions
+
+		Declare @Id int = 0;
+
+		Declare @UserId int = 01
+		        ,@Question nvarchar(500) = 'What is a Database?'
+				,@HelpText nvarchar(255) = 'SQL Server'
+				,@IsRequired bit = 1
+				,@IsMultipleAllowed bit = 0
+				,@QuestionTypeId int = 2
+				,@TestId int = 2
+				,@StatusId int = 1
+				,@SortOrder int = 1
+
+		Execute dbo.TestQuestions_Insert
+		         @UserId
+				 ,@Question
+				 ,@HelpText
+				 ,@IsRequired
+				 ,@IsMultipleAllowed
+				 ,@QuestionTypeId
+				 ,@TestId
+				 ,@StatusId
+				 ,@SortOrder
+				 ,@Id OUTPUT
+
+		 Select *
+		      from dbo.TestQuestions
+				      
+					  
+					  
+
+*/
+
+as
+
+BEGIN
+
+INSERT INTO [dbo].[TestQuestions]
+           ([UserId]
+           ,[Question]
+           ,[HelpText]
+           ,[IsRequired]
+           ,[IsMultipleAllowed]
+           ,[QuestionTypeId]
+           ,[TestId]
+           ,[StatusId]
+           ,[SortOrder]
+           )
+     VALUES
+           (@UserId
+		   ,@Question
+		   ,@HelpText
+		   ,@IsRequired
+		   ,@IsMultipleAllowed
+		   ,@QuestionTypeId
+		   ,@TestId
+		   ,@StatusId
+		   ,@SortOrder)
+		   SET @Id = SCOPE_IDENTITY()
+END
+
+
