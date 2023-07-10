@@ -1,0 +1,52 @@
+USE [MoneFi]
+GO
+/****** Object:  StoredProcedure [dbo].[TestQuestionAnswerOptions_DeleteById]    Script Date: 7/10/2023 11:40:13 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[TestQuestionAnswerOptions_DeleteById]
+
+@Id int
+
+/* 
+Author: Jessica Maslanik
+-- Create date: 5/5/2023
+-- Description: Test Question Answer Option Delete
+-- Code Reviewer: John Nelson
+
+-- MODIFIED BY: Jessica Maslanik
+-- MODIFIED DATE: 5/9/2023
+-- Code Reviewer:John Nelson
+-- Note: No changes to code.
+
+*/
+
+/* ----TEST CODE------
+
+Declare @Id int = 1
+
+Select *
+     from dbo.TestQuestionAnswerOptions
+	 Where Id = @Id
+
+   Execute dbo.TestQuestionAnswerOptions_DeleteById
+           @Id
+
+Select *
+     from dbo.TestQuestionAnswerOptions
+	 Where Id = @Id
+
+*/
+
+as
+
+BEGIN
+
+
+DELETE FROM [dbo].[TestQuestionAnswerOptions]
+      WHERE Id = @Id
+END
+
+
